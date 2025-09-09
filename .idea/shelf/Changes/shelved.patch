@@ -1,0 +1,38 @@
+Index: app/src/main/java/com/example/basicweatherforecast/data/repo/GeoRepo.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.basicweatherforecast.data.repo\r\n\r\nimport com.example.basicweatherforecast.data.model.Geo\r\nimport com.example.basicweatherforecast.data.model.GeoParams\r\nimport com.example.basicweatherforecast.data.remote.RetrofitClient\r\n\r\nclass GeoRepository {\r\n\r\n    suspend fun getGeo(payload : GeoParams) : Result<List<Geo>>  {\r\n        try {\r\n            val geo: List<Geo> = RetrofitClient.apiService.getGeo(\r\n                city = payload.city,\r\n                limit = payload.limit,\r\n                apiKey = payload.apiKey\r\n            )\r\n            return Result.success(geo)\r\n        }\r\n        catch (e : Exception){\r\n            println(\"Error in repository: ${e.message}\")\r\n            return Result.failure(e)\r\n        }\r\n    }\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/basicweatherforecast/data/repo/GeoRepo.kt b/app/src/main/java/com/example/basicweatherforecast/data/repo/GeoRepo.kt
+--- a/app/src/main/java/com/example/basicweatherforecast/data/repo/GeoRepo.kt	(revision 03f4796c277ea7cef0221ac1f095291fe171902f)
++++ b/app/src/main/java/com/example/basicweatherforecast/data/repo/GeoRepo.kt	(date 1757426877049)
+@@ -16,7 +16,7 @@
+             return Result.success(geo)
+         }
+         catch (e : Exception){
+-            println("Error in repository: ${e.message}")
++            println("Error in Geo repository: ${e.message}")
+             return Result.failure(e)
+         }
+     }
+Index: app/src/main/java/com/example/basicweatherforecast/data/repo/WeatherRepo.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.basicweatherforecast.data.repo\r\n\r\nimport com.example.basicweatherforecast.data.model.Weather\r\nimport com.example.basicweatherforecast.data.model.WeatherParams\r\nimport com.example.basicweatherforecast.data.remote.RetrofitClient\r\n\r\nclass WeatherRepository {\r\n\r\n    suspend fun getWeather(payload : WeatherParams) : Result<Weather>  {\r\n        try {\r\n            val weather: Weather = RetrofitClient.apiService.getWeather(\r\n                lat = payload.lat.toString(),\r\n                lon = payload.lon.toString(),\r\n                exclude = payload.exclude,\r\n                apiKey = payload.apiKey\r\n            )\r\n            println(\"GET WEATHER SUCCESS\")\r\n            println(weather)\r\n            return Result.success(weather)\r\n        }\r\n        catch (e : Exception){\r\n            println(\"Error in repository: ${e.message}\")\r\n            return Result.failure(e)\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/src/main/java/com/example/basicweatherforecast/data/repo/WeatherRepo.kt b/app/src/main/java/com/example/basicweatherforecast/data/repo/WeatherRepo.kt
+--- a/app/src/main/java/com/example/basicweatherforecast/data/repo/WeatherRepo.kt	(revision 03f4796c277ea7cef0221ac1f095291fe171902f)
++++ b/app/src/main/java/com/example/basicweatherforecast/data/repo/WeatherRepo.kt	(date 1757426877054)
+@@ -19,7 +19,7 @@
+             return Result.success(weather)
+         }
+         catch (e : Exception){
+-            println("Error in repository: ${e.message}")
++            println("Error in Weather repository: ${e.message}")
+             return Result.failure(e)
+         }
+     }
